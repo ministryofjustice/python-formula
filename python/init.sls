@@ -8,6 +8,8 @@ virtualenv:
 python-pip:
   pkg:
     - installed
+    - require_in:
+      - pip.*
 
 
 # virtualenv 1.11 does not work with system-site-packages
@@ -20,3 +22,5 @@ virtualenv==1.10.1:
 python-dev:
   pkg:
     - installed
+    - require_in:
+      - pip.*
