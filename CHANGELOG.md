@@ -1,3 +1,10 @@
+## Version 1.1.0
+
+* Add ability to set `virtualenv` version, or install
+  latest otherwise.  This might come handy when you need
+  to pin-down version to a specific release (but, do not
+  really hardcode it).
+
 ## Version 1.0.2
 
 * Be explicit about dependencies for pip modules
