@@ -7,12 +7,22 @@ pip-fixer:
     - name: 'python2.7 /tmp/get-pip.py'
     - unless: pip
     - require:
-      - pkg: python-pip
       - file: pip-fixer
+      - cmd: requests
   file.managed:
     - name: /tmp/get-pip.py
     - mode: 700
     - source: salt://python/files/get-pip.py
+
+# We run this before the get-pip fix above to ensure it is broken here and not later. We have to use a cmd state
+# because the pip state will return an error when it confirms the install of the package.
+requests:
+  cmd.run:
+    - name: pip install requests==2.5.3
+    - unless: pip list | grep "requests (2.5.3)"
+    - require:
+      - pkg: python-pip
+      - pkg: python-dev
 
 install-virtualenv:
   pip.installed:
