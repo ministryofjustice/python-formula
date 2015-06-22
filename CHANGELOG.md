@@ -1,3 +1,7 @@
+## Version 1.1.x
+
+* Workaround pip ubuntu bug by installing pip from script (if it's broken).
+
 ## Version 1.1.0
 
 * Add ability to set `virtualenv` version, or install
