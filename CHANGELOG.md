@@ -1,4 +1,4 @@
-## Version 1.1.x
+## Version 1.1.1
 
 * Workaround pip ubuntu bug by installing pip from script (if it's broken).
 
