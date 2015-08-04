@@ -4,25 +4,17 @@
 # This command will run if pip is broken and install a version of pip that works!
 pip-fixer:
   cmd.run:
-    - name: 'python2.7 /tmp/get-pip.py'
-    - unless: pip
+    - name: "easy_install -U pip 'requests[security]'"
+    # Test that the current installed version of pip works when requests is
+    # loaded. The python-pip shipped with ubuntu 14.04 doesn't work.
+    - unless: >
+        python -c "__requires__=['pip>=7.1.0', 'requests>=2.7.0']; import pkg_resources"
+    - require_in:
+      - pip.*
     - require:
-      - file: pip-fixer
-      - cmd: requests
-  file.managed:
-    - name: /tmp/get-pip.py
-    - mode: 700
-    - source: salt://python/files/get-pip.py
-
-# We run this before the get-pip fix above to ensure it is broken here and not later. We have to use a cmd state
-# because the pip state will return an error when it confirms the install of the package.
-requests:
-  cmd.run:
-    - name: pip install requests==2.5.3
-    - unless: pip list | grep "requests (2.5.3)"
-    - require:
-      - pkg: python-pip
-      - pkg: python-dev
+      - pkg: libffi-dev
+      - pkg: libssl-dev
+    - reload_modules: true
 
 install-virtualenv:
   pip.installed:
@@ -31,17 +23,15 @@ install-virtualenv:
 {% else %}
     - name: virtualenv
 {% endif %}
-    - require:
-      - cmd: pip-fixer
-
-python-pip:
-  pkg:
-    - installed
-    - require_in:
-      - pip.*
 
 python-dev:
   pkg:
     - installed
     - require_in:
       - pip.*
+
+libssl-dev:
+  pkg.installed: []
+
+libffi-dev:
+  pkg.installed: []

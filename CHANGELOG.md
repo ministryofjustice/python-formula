@@ -1,3 +1,7 @@
+## UNRELEASED
+
+* Reworked test and install mechanism for broken pip
+
 ## Version 1.1.1
 
 * Workaround pip ubuntu bug by installing pip from script (if it's broken).
