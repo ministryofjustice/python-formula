@@ -1,4 +1,4 @@
-## UNRELEASED
+## Version 1.1.2
 
 * Reworked test and install mechanism for broken pip
 
