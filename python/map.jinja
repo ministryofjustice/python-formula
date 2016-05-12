@@ -1,5 +1,5 @@
 {% set python = salt['grains.filter_by']({
   'Ubuntu': {
-    'virtualenv_version': None,
+    'pip_version': 8.1.1,
   }
 }, merge=salt['pillar.get']('python:lookup'), default='Ubuntu') %}
