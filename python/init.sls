@@ -4,7 +4,11 @@
 # This command will run if pip is broken and install a version of pip that works!
 pip-fixer:
   cmd.run:
+{% if python.pip_version is defined %}
+    - name: "easy_install -U pip=={{ python.pip_version }} 'requests[security]'"
+{% else %}
     - name: "easy_install -U pip 'requests[security]'"
+{% endif %}
     # Test that the current installed version of pip works when requests is
     # loaded. The python-pip shipped with ubuntu 14.04 doesn't work.
     - unless: >
@@ -18,7 +22,7 @@ pip-fixer:
 
 install-virtualenv:
   pip.installed:
-{% if python.virtualenv_version  %}
+{% if python.virtualenv_version is defined %}
     - name: virtualenv=={{ python.virtualenv_version }}
 {% else %}
     - name: virtualenv
