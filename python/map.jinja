@@ -1,5 +1,16 @@
 {% set python = salt['grains.filter_by']({
-  'Ubuntu': {
-    'pip_version': 8.1.1,
-  }
-}, merge=salt['pillar.get']('python:lookup'), default='Ubuntu') %}
+
+    'Ubuntu-12.04': {
+            'pip_version': '8.1.1'
+    },
+
+    'Ubuntu-14.04': {
+        'pip_version': '8.1.1'
+    },
+
+    'Unknown': {
+        'pip_version': '8.1.1'
+    }
+
+}, grain='osfinger', merge=salt['pillar.get']('python',{}), default='Unknown') %}
+
