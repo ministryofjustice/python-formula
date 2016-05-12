@@ -1,3 +1,7 @@
+## Version 1.1.3
+
+* Set pip version explicitly
+
 ## Version 1.1.2
 
 * Reworked test and install mechanism for broken pip
