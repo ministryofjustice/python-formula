@@ -9,10 +9,10 @@ pip-fixer:
 {% else %}
     - name: "easy_install -U pip 'requests[security]'"
 {% endif %}
-    # Test that the current installed version of pip works when requests is
-    # loaded. The python-pip shipped with ubuntu 14.04 doesn't work.
-    - unless: >
-        python -c "__requires__=['pip>=7.1.0', 'requests>=2.7.0']; import pkg_resources"
+    # Test that the current installed version of pip works when requests is loaded
+    # Test that the installed version of pip has a project_name variable, Salt <=2015.8.5 is incompatible with Pip v8.1.2
+    - unless:
+       - python -c "import pip; pip.req.InstallRequirement.from_line('somereq').req.project_name; __requires__=['pip>=7.1.0', 'requests>=2.7.0']; import pkg_resources"
     - require_in:
       - pip.*
     - require:
