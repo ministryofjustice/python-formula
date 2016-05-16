@@ -1,3 +1,8 @@
+## v1.1.4
+
+* Fix pip-fixer unless check
+* Improve OS variable mapping
+
 ## Version 1.1.3
 
 * Set pip version explicitly
