@@ -1,3 +1,7 @@
+## v1.1.5
+
+* Always install a local version of pip
+
 ## v1.1.4
 
 * Fix pip-fixer unless check
