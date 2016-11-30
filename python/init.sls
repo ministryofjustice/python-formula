@@ -3,7 +3,7 @@
 # This command will install a local version of pip
 pip-fixer:
   cmd.run:
-    - name: "easy_install -U pip=={{ python.pip_version }} 'requests[security]'"
+    - name: "easy_install -U pip=={{ python.pip_version }} 'requests[security]==2.12.1'"
     - require_in:
       - pip.*
     - require:
