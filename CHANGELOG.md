@@ -1,3 +1,11 @@
+## v1.1.7
+
+* Pin version of setuptools
+
+## v1.1.6
+
+* Pin requests to 2.12.1
+
 ## v1.1.5
 
 * Always install a local version of pip
